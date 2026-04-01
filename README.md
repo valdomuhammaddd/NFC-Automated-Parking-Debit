@@ -1,4 +1,8 @@
-
+![License](https://img.shields.io/badge/license-All%20Rights%20Reserved-red?style=flat-square)
+![Platform](https://img.shields.io/badge/platform-Android-green?style=flat-square&logo=android)
+![Framework](https://img.shields.io/badge/framework-React%20Native-blue?style=flat-square&logo=react)
+![Language](https://img.shields.io/badge/language-TypeScript-blue?style=flat-square&logo=typescript)
+![Build](https://img.shields.io/badge/build-passing-brightgreen?style=flat-square)
 # MARKIR E-Parking Management
 
 MARKIR is an E-Parking Management application utilizing NFC technology for efficient parking fee management.
