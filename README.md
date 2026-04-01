@@ -155,4 +155,4 @@ The application uses a mock API to simulate backend operations:
 
 ---
 
-**Made with ❤️ by Valdo Muhammad**
+**Engineered with precision by Valdo Muhammad**
