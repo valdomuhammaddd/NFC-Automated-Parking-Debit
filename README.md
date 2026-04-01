@@ -5,7 +5,7 @@
 ![Build](https://img.shields.io/badge/build-passing-brightgreen?style=flat-square)
 # MARKIR E-Parking Management
 
-MARKIR is an E-Parking Management application utilizing NFC technology for efficient parking fee management.
+MARKIR is a high-performance E-Parking Management ecosystem. It leverages NFC (Near Field Communication) hardware integration to provide secure, contactless, and real-time parking fee settlement
 
 ## Developer
 
