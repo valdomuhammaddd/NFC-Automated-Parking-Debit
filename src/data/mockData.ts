@@ -1,0 +1,358 @@
+/**
+ * MARKIR 2.0 - Mock Data (Parkee-style)
+ */
+
+export const mockUsers = {
+  admin: {
+    id: '1',
+    name: 'Admin MARKIR',
+    email: 'admin@markir.com',
+    phone: '+62 812-3456-7890',
+    role: 'admin' as const,
+    avatar: 'https://ui-avatars.com/api/?name=Admin+MARKIR',
+  },
+  user: {
+    id: '2',
+    name: 'Valdo Muhammad',
+    email: 'valdo@student.uigm.ac.id',
+    phone: '+62 812-9876-5432',
+    role: 'user' as const,
+    avatar: 'https://ui-avatars.com/api/?name=Valdo+Muhammad',
+  },
+};
+
+export const mockBalance = 150000;
+
+export const mockVehicles = [
+  {
+    id: '1',
+    type: 'motorcycle' as const,
+    plateNumber: 'B 1234 XYZ',
+    brand: 'Honda',
+    model: 'Beat',
+    color: 'Merah',
+    nfcTagId: 'NFC001',
+    isPrimary: true,
+  },
+  {
+    id: '2',
+    type: 'motorcycle' as const,
+    plateNumber: 'B 5678 ABC',
+    brand: 'Yamaha',
+    model: 'Mio',
+    color: 'Hitam',
+    nfcTagId: 'NFC002',
+    isPrimary: false,
+  },
+];
+
+export const mockLocations = [
+  {
+    id: '1',
+    name: 'Campus Parking A',
+    address: 'Jl. Kampus No.1',
+    distance: 250,
+    pricePerHour: 2000,
+    availableSlots: 45,
+    totalSlots: 100,
+    status: 'open' as const,
+    latitude: -2.9760688,
+    longitude: 104.7754307,
+    facilities: ['CCTV', '24/7', 'Shelter'],
+  },
+  {
+    id: '2',
+    name: 'Campus Parking B',
+    address: 'Jl. Kampus No.2',
+    distance: 450,
+    pricePerHour: 1500,
+    availableSlots: 80,
+    totalSlots: 150,
+    status: 'open' as const,
+    latitude: -2.9770688,
+    longitude: 104.7764307,
+    facilities: ['CCTV', 'Shelter'],
+  },
+  {
+    id: '3',
+    name: 'Mall Parking',
+    address: 'Jl. Mall Grand No.1',
+    distance: 1200,
+    pricePerHour: 3000,
+    availableSlots: 0,
+    totalSlots: 200,
+    status: 'full' as const,
+    latitude: -2.9780688,
+    longitude: 104.7774307,
+    facilities: ['CCTV', '24/7', 'Shelter', 'Toilet'],
+  },
+  {
+    id: '4',
+    name: 'Office Building',
+    address: 'Jl. Sudirman No.123',
+    distance: 800,
+    pricePerHour: 5000,
+    availableSlots: 25,
+    totalSlots: 50,
+    status: 'open' as const,
+    latitude: -2.9790688,
+    longitude: 104.7784307,
+    facilities: ['CCTV', '24/7', 'Security'],
+  },
+];
+
+export const mockTransactions = [
+  {
+    id: '1',
+    type: 'parking' as const,
+    location: 'Campus Parking A',
+    vehicleId: '1',
+    plateNumber: 'B 1234 XYZ',
+    checkIn: new Date('2025-11-09T08:00:00'),
+    checkOut: new Date('2025-11-09T12:30:00'),
+    duration: 270, // minutes
+    amount: 9000,
+    status: 'completed' as const,
+    paymentMethod: 'balance',
+    timestamp: new Date('2025-11-09T12:30:00'),
+  },
+  {
+    id: '2',
+    type: 'topup' as const,
+    location: 'Top Up',
+    amount: 50000,
+    status: 'completed' as const,
+    paymentMethod: 'gopay',
+    timestamp: new Date('2025-11-09T07:00:00'),
+  },
+  {
+    id: '3',
+    type: 'parking' as const,
+    location: 'Campus Parking B',
+    vehicleId: '1',
+    plateNumber: 'B 1234 XYZ',
+    checkIn: new Date('2025-11-08T09:00:00'),
+    checkOut: new Date('2025-11-08T15:00:00'),
+    duration: 360,
+    amount: 9000,
+    status: 'completed' as const,
+    paymentMethod: 'balance',
+    timestamp: new Date('2025-11-08T15:00:00'),
+  },
+  {
+    id: '4',
+    type: 'parking' as const,
+    location: 'Mall Parking',
+    vehicleId: '2',
+    plateNumber: 'B 5678 ABC',
+    checkIn: new Date('2025-11-07T14:00:00'),
+    checkOut: new Date('2025-11-07T18:30:00'),
+    duration: 270,
+    amount: 13500,
+    status: 'completed' as const,
+    paymentMethod: 'balance',
+    timestamp: new Date('2025-11-07T18:30:00'),
+  },
+  {
+    id: '5',
+    type: 'topup' as const,
+    location: 'Top Up',
+    amount: 100000,
+    status: 'completed' as const,
+    paymentMethod: 'ovo',
+    timestamp: new Date('2025-11-06T10:00:00'),
+  },
+];
+
+export const mockPromotions = [
+  {
+    id: '1',
+    title: 'First Time User',
+    subtitle: 'Get 50% OFF your first parking',
+    description: 'Valid for new users only',
+    discount: 50,
+    discountType: 'percentage' as const,
+    maxDiscount: 10000,
+    validUntil: new Date('2025-12-31'),
+    code: 'FIRST50',
+  image: require('../../assets/icon-test.png'),
+  },
+  {
+    id: '2',
+    title: 'Top Up Bonus',
+    subtitle: 'Get extra 10% when top up',
+    description: 'Min. top up Rp 100.000',
+    discount: 10,
+    discountType: 'percentage' as const,
+    maxDiscount: 20000,
+    validUntil: new Date('2025-11-30'),
+    code: 'TOPUP10',
+  image: require('../../assets/icon-test.png'),
+  },
+  {
+    id: '3',
+    title: 'Weekend Special',
+    subtitle: 'Parking only Rp 1.000/hour',
+    description: 'Valid Saturday & Sunday',
+    discount: 1000,
+    discountType: 'fixed' as const,
+    maxDiscount: 1000,
+    validUntil: new Date('2025-11-30'),
+    code: 'WEEKEND',
+  image: require('../../assets/icon-test.png'),
+  },
+];
+
+export const mockVouchers = [
+  {
+    id: '1',
+    code: 'DISKON50',
+    title: 'Discount 50%',
+    description: 'Get 50% off (max Rp 10.000)',
+    discount: 50,
+    discountType: 'percentage' as const,
+    maxDiscount: 10000,
+    minTransaction: 5000,
+    validUntil: new Date('2025-11-15'),
+    isUsed: false,
+  },
+  {
+    id: '2',
+    code: 'GRATIS1X',
+    title: 'Free 1x Parking',
+    description: 'Get 1 free parking session',
+    discount: 100,
+    discountType: 'percentage' as const,
+    maxDiscount: 15000,
+    minTransaction: 0,
+    validUntil: new Date('2025-11-20'),
+    isUsed: false,
+  },
+];
+
+export const mockSubscriptions = [
+  {
+    id: 'daily',
+    name: 'Daily Pass',
+    price: 15000,
+    duration: 1,
+    durationType: 'day' as const,
+    benefits: ['Unlimited parking for 1 day', 'All locations', 'Priority support'],
+  },
+  {
+    id: 'weekly',
+    name: 'Weekly Pass',
+    price: 75000,
+    duration: 7,
+    durationType: 'day' as const,
+    benefits: ['Unlimited parking for 7 days', 'All locations', 'Priority support', 'Save 30%'],
+  },
+  {
+    id: 'monthly',
+    name: 'Monthly Pass',
+    price: 250000,
+    duration: 30,
+    durationType: 'day' as const,
+    benefits: ['Unlimited parking for 30 days', 'All locations', 'Priority support', 'Save 50%', 'Transfer 1x'],
+  },
+  {
+    id: 'quarterly',
+    name: '3 Months Pass',
+    price: 650000,
+    duration: 90,
+    durationType: 'day' as const,
+    benefits: ['Unlimited parking for 90 days', 'All locations', 'Priority support', 'Save 60%', 'Transfer 3x', '1 Free guest pass'],
+  },
+];
+
+export const mockNotifications = [
+  {
+    id: '1',
+    type: 'promo' as const,
+    title: 'New Promotion!',
+    message: 'Get 50% off for first time parking',
+    timestamp: new Date('2025-11-09T08:00:00'),
+    isRead: false,
+  },
+  {
+    id: '2',
+    type: 'parking' as const,
+    title: 'Parking Completed',
+    message: 'Your parking session at Campus A has ended',
+    timestamp: new Date('2025-11-09T12:30:00'),
+    isRead: true,
+  },
+  {
+    id: '3',
+    type: 'topup' as const,
+    title: 'Top Up Success',
+    message: 'Rp 50.000 has been added to your balance',
+    timestamp: new Date('2025-11-09T07:00:00'),
+    isRead: true,
+  },
+];
+
+export const mockPaymentMethods = [
+  {
+    id: 'balance',
+    name: 'MARKIR Balance',
+    type: 'wallet' as const,
+    icon: 'wallet',
+    isEnabled: true,
+  },
+  {
+    id: 'gopay',
+    name: 'GoPay',
+    type: 'ewallet' as const,
+    icon: 'logo-google',
+    isEnabled: true,
+  },
+  {
+    id: 'ovo',
+    name: 'OVO',
+    type: 'ewallet' as const,
+    icon: 'ellipse',
+    isEnabled: true,
+  },
+  {
+    id: 'dana',
+    name: 'DANA',
+    type: 'ewallet' as const,
+    icon: 'diamond',
+    isEnabled: true,
+  },
+  {
+    id: 'qris',
+    name: 'QRIS',
+    type: 'qr' as const,
+    icon: 'qr-code',
+    isEnabled: true,
+  },
+];
+
+export const mockFAQs = [
+  {
+    id: '1',
+    category: 'General',
+    question: 'Apa itu MARKIR?',
+    answer: 'MARKIR adalah aplikasi parkir digital berbasis NFC yang memudahkan Anda untuk parkir tanpa perlu scan QR code. Cukup tap kartu NFC dan selesai!',
+  },
+  {
+    id: '2',
+    category: 'NFC',
+    question: 'Bagaimana cara menggunakan NFC?',
+    answer: 'Pastikan NFC di HP Anda aktif, lalu dekatkan kartu/HP ke reader NFC di gate parkir. Sistem akan otomatis mendeteksi dan memproses.',
+  },
+  {
+    id: '3',
+    category: 'Payment',
+    question: 'Bagaimana cara top up saldo?',
+    answer: 'Buka menu Wallet, pilih nominal top up, lalu pilih metode pembayaran (GoPay, OVO, DANA, atau transfer bank).',
+  },
+  {
+    id: '4',
+    category: 'General',
+    question: 'Apakah bisa parkir tanpa saldo?',
+    answer: 'Tidak, Anda harus memiliki saldo yang cukup sebelum parkir. Pastikan top up terlebih dahulu.',
+  },
+];

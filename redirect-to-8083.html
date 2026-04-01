@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>MARKIR - Redirecting to Port 8083</title>
+    <style>
+        body {
+            background: linear-gradient(135deg, #FF6B35 0%, #F7931E 100%);
+            color: white;
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            text-align: center;
+        }
+        .container {
+            max-width: 600px;
+            padding: 40px;
+        }
+        h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+        p {
+            font-size: 20px;
+            margin-bottom: 30px;
+        }
+        .countdown {
+            font-size: 72px;
+            font-weight: bold;
+            margin: 30px 0;
+        }
+        a {
+            color: white;
+            text-decoration: underline;
+            font-size: 18px;
+        }
+    </style>
+    <script>
+        let countdown = 3;
+        
+        function updateCountdown() {
+            document.getElementById('countdown').textContent = countdown;
+            countdown--;
+            
+            if (countdown < 0) {
+                window.location.href = 'http://localhost:8083';
+            } else {
+                setTimeout(updateCountdown, 1000);
+            }
+        }
+        
+        window.onload = function() {
+            updateCountdown();
+        };
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h1>🚀 MARKIR APP</h1>
+        <p>Redirecting to fresh bundle on port 8083...</p>
+        <p>Zero cache, zero problems!</p>
+        <div class="countdown" id="countdown">3</div>
+        <p><a href="http://localhost:8083">Click here if not redirected automatically</a></p>
+    </div>
+</body>
+</html>

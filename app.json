@@ -1,0 +1,43 @@
+{
+  "expo": {
+    "name": "MARKIR",
+    "slug": "markir-app",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon-test.png",
+    "userInterfaceStyle": "light",
+    "splash": {
+      "image": "./assets/splash-icon.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#FFFFFF"
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.valdomuhammad.markir"
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/icon-test.png",
+        "backgroundColor": "#FFFFFF"
+      },
+      "package": "com.valdomuhammad.markir",
+      "permissions": [
+        "android.permission.NFC",
+        "android.permission.INTERNET",
+        "android.permission.ACCESS_FINE_LOCATION",
+        "android.permission.ACCESS_COARSE_LOCATION"
+      ]
+    },
+    "web": {
+      "favicon": "./assets/icon-test.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "d8c49e3b-c5fe-4896-aafe-a36a3fd6c737"
+      }
+    }
+  }
+}

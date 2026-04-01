@@ -1,0 +1,151 @@
+===========================================
+   VALDO - IKUTI STEP INI SATU PER SATU
+===========================================
+
+Problem: Browser Anda MASIH load bundle lama di port 8081/8082
+Solution: PAKSA browser ke port 8083
+
+---
+
+STEP 1: CEK URL SEKARANG
+=========================
+Di browser address bar, apa yang tertulis?
+□ localhost:8081 ← SALAH! Ini port lama!
+□ localhost:8082 ← SALAH! Ini port lama!
+□ localhost:8083 ← BENAR! Ini port baru!
+
+Jika BUKAN 8083 → Lanjut ke Step 2
+
+---
+
+STEP 2: TUTUP BROWSER
+======================
+1. Close SEMUA tab localhost
+2. Close SEMUA browser windows
+3. Tekan Ctrl+Shift+Esc (Task Manager)
+4. End task "Chrome" atau "msedge" atau "firefox"
+5. PASTI semua browser tertutup!
+
+---
+
+STEP 3: BUKA INCOGNITO
+=======================
+Chrome: Ctrl+Shift+N
+Edge: Ctrl+Shift+N
+Firefox: Ctrl+Shift+P
+
+Window BARU akan muncul (gelap/private mode)
+
+---
+
+STEP 4: KETIK URL MANUAL
+=========================
+JANGAN klik history!
+JANGAN klik suggestions!
+JANGAN paste!
+
+KETIK MANUAL huruf per huruf:
+l o c a l h o s t : 8 0 8 3
+
+Tekan ENTER
+
+---
+
+STEP 5: TUNGGU BUNDLE
+======================
+Di terminal VS Code, tunggu muncul:
+"Web Bundled XXXms node_modules\expo\AppEntry.js (545 modules)"
+
+Ini berarti server sedang build bundle BARU untuk port 8083
+
+---
+
+STEP 6: CEK CONSOLE
+====================
+Tekan F12 (Developer Tools)
+Go to "Console" tab
+
+JIKA BERHASIL, kamu akan lihat:
+✓ "NFC not supported on web platform"
+✓ Splash screen muncul
+✓ Login screen muncul
+✓ NO ERROR line 66373!
+
+JIKA MASIH ERROR LINE 66373:
+✗ Berarti masih load cache
+✗ Back to STEP 1, ulangi semua
+
+---
+
+STEP 7: VERIFY PORT
+====================
+Look at address bar:
+HARUS: "localhost:8083"
+BUKAN: "localhost:8081" 
+BUKAN: "localhost:8082"
+
+Jika MASIH salah port → Browser redirect otomatis!
+Solution: Buka file ini di Windows Explorer:
+C:\MARKIR\markir-app\redirect-to-8083.html
+Double-click → Auto redirect ke 8083
+
+---
+
+TROUBLESHOOTING:
+================
+
+Q: Browser otomatis redirect ke 8081?
+A: Hapus browser history (Ctrl+Shift+Delete)
+
+Q: Masih error line 66373?
+A: Anda MASIH di port 8081/8082! Check address bar!
+
+Q: Incognito masih error?
+A: Service Worker issue → Download Firefox (fresh browser)
+
+Q: Console kosong?
+A: Bundle belum selesai → Check terminal untuk "Web Bundled"
+
+---
+
+FINAL CHECKLIST:
+================
+☑ Server running di port 8083? (check terminal)
+☑ Browser address bar = localhost:8083?
+☑ Incognito mode aktif?
+☑ DevTools open (F12)?
+☑ Console tab visible?
+☑ Bundle completed (check terminal)?
+
+Jika SEMUA ✓ tapi masih error → Report FULL error message!
+
+---
+
+INFO PENTING:
+=============
+Error line 66373 = Bundle LAMA (port 8081/8082)
+Bundle BARU di port 8083 = TIDAK ADA line 66373!
+
+Proof: Lihat terminal, bundle baru sudah dibuat 5x!
+Problem: Browser Anda masih akses port lama!
+
+---
+
+PORT HISTORY:
+=============
+8081 = Port pertama (error borderRadius)
+8082 = Port kedua (masih cached)
+8083 = Port BARU (FRESH, zero cache!) ← USE THIS!
+
+---
+
+WHAT TO REPORT:
+===============
+1. URL di address bar: ________________
+2. Incognito aktif: Yes / No
+3. Console error: (copy/paste atau "no error")
+4. Terminal bundle message: (copy last "Web Bundled" line)
+
+---
+
+Good luck Valdo! Port 8083 is READY and WAITING! 🚀

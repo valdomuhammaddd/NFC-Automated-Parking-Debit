@@ -1,0 +1,41 @@
+# Dependencies - INI YANG PALING BERAT (Wajib di-ignore)
+node_modules/
+.expo/
+dist/
+web-build/
+
+# Android Build & Junk
+.gradle/
+build/
+/*/build
+*.iml
+.idea/
+local.properties
+.idea/workspace.xml
+.idea/libraries/
+*.apk
+*.ap_
+*.dex
+
+# Native Binaries
+bin/
+gen/
+out/
+
+# Log & Debug
+*.log
+npm-debug.*
+yarn-debug.*
+yarn-error.*
+
+# System Files
+.DS_Store
+Thumbs.db
+.env*.local
+
+# Keystore & Security (Sangat penting untuk keamanan)
+*.jks
+*.p8
+*.p12
+*.key
+*.mobileprovision
