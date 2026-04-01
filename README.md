@@ -6,172 +6,163 @@
 
 # MARKIR E-Parking Management
 
-MARKIR is a high-performance E-Parking Management ecosystem. It leverages **NFC (Near Field Communication)** hardware integration to provide secure, contactless, and real-time parking fee settlement.
+**MARKIR** is a high-performance E-Parking Management ecosystem. It leverages **NFC (Near Field Communication)** hardware integration to provide secure, contactless, and real-time parking fee settlement.
 
-## Developer
+---
 
-**Valdo Muhammad** Computer Systems Student  
-Indo Global Mandiri University, Palembang  
+## 👨‍💻 Developer
+**Valdo Muhammad** *Computer Systems Student* Indo Global Mandiri University, Palembang  
 Instagram: [@valdomuhammadd](https://instagram.com/valdomuhammadd)
 
-## Features
+---
 
-- **NFC Technology**: Read & write NFC tags
-- **E-Wallet System**: Integration with GoPay, DANA, LinkAja
-- **Membership System**: Free parking for members
-- **Admin Dashboard**: Statistics and management tools
-- **Transaction History**: Complete audit trail
-- **Google OAuth**: Secure authentication
-- **Blue Ocean Theme**: Modern UI/UX (#0077B6)
+## ✨ Features
+* **NFC Technology**: Seamless Read & Write capabilities for NFC tags.
+* **E-Wallet System**: Integrated simulation with GoPay, DANA, and LinkAja.
+* **Membership System**: Automated logic for free parking for registered members.
+* **Admin Dashboard**: Real-time statistics and management tools.
+* **Transaction History**: Complete and secure audit trail for all activities.
+* **Google OAuth**: Secure authentication via Google Sign-In.
+* **Blue Ocean Theme**: Modern and sleek UI/UX design (#0077B6).
 
-## Tech Stack
+---
 
-- **Framework**: React Native + TypeScript
-- **State Management**: Redux Toolkit
-- **Architecture**: MVVM Pattern
-- **Navigation**: React Navigation 7.x
-- **NFC**: react-native-nfc-manager
-- **Authentication**: @react-native-google-signin/google-signin
-- **Styling**: React Native StyleSheet
+## 🛠️ Tech Stack
+* **Framework**: React Native + TypeScript
+* **State Management**: Redux Toolkit
+* **Architecture**: MVVM (Model-View-ViewModel) Pattern
+* **Navigation**: React Navigation 7.x
+* **NFC**: `react-native-nfc-manager`
+* **Authentication**: `@react-native-google-signin/google-signin`
+* **Styling**: React Native StyleSheet
 
-## Project Structure
+---
 
+## 📂 Project Structure
+```text
 markir-app/
-src/
-data/
-api/           # Mock API handlers
-types/         # TypeScript interfaces
-redux/
-slices/        # Redux slices (auth, user, transaction)
-store.ts       # Redux store configuration
-hooks.ts       # Typed Redux hooks
-navigation/      # Navigation stacks
-screens/
-admin/         # Admin screens
-user/          # User screens
-auth/          # Authentication screens
-components/      # Reusable components
-theme/           # Colors, spacing, typography
-utils/           # NFC service and utilities
-App.tsx           # Main entry point
-package.json
+├── src/
+│   ├── data/
+│   │   ├── api/           # Mock API handlers & simulation logic
+│   │   └── types/         # TypeScript interfaces & types
+│   ├── redux/
+│   │   ├── slices/        # Redux slices (auth, user, transaction)
+│   │   ├── store.ts       # Central Redux store configuration
+│   │   └── hooks.ts       # Typed Redux hooks for TypeScript
+│   ├── navigation/        # Stack & Tab navigation configurations
+│   ├── screens/
+│   │   ├── admin/         # Admin-specific modules
+│   │   ├── user/          # User-facing modules
+│   │   └── auth/          # Authentication flows
+│   ├── components/        # Reusable UI components
+│   ├── theme/             # Global colors, spacing, and typography
+│   └── utils/             # NFC services and helper utilities
+├── App.tsx                # Main entry point
+└── package.json           # Project dependencies & scripts
+```
 
+---
 
-## Installation
+## 🚀 Installation
 
-1. **Install Dependencies**
-   ```bash
-   npm install
-Start Development Server
+### 1. Install Dependencies
+```bash
+npm install
+```
 
-Bash
+### 2. Start Development Server
+```bash
 npx expo start
-Run on Device
+```
 
-Scan the QR code with the Expo Go app
+### 3. Run on Device
+* Scan the QR code with the **Expo Go** app.
+* Or press **'a'** for Android / **'i'** for iOS in the terminal.
 
-Or press 'a' for Android / 'i' for iOS in the terminal
+---
 
-User Roles
-Admin
-Dashboard with statistics
+## 👤 User Roles
 
-NFC Tag Reading (Billing)
+### Admin
+* Full Dashboard access with real-time statistics.
+* **NFC Tag Reading**: Used for billing and payment verification.
+* **NFC Tag Writing**: Used for new motorcycle registration.
+* Complete transaction management.
 
-NFC Tag Writing (Motorcycle Registration)
+### User
+* Personal wallet management.
+* Simulated Top-up balance.
+* View profile & registered vehicles.
+* Personal transaction history.
 
-Transaction management
+---
 
-User
-Wallet management
+## 💳 Payment System
+* **Non-Member**: Rp 2,000 per visit.
+* **Active Member**: **FREE** parking.
+* **Supported E-Wallets**: GoPay, DANA, LinkAja.
 
-Top up balance
+---
 
-View profile & registered motorcycles
+## 🎨 Design System (Blue Ocean)
+* **Primary**: `#0077B6`
+* **Accent**: `#48CAE4`
+* **Success**: `#06D6A0`
+* **Danger**: `#EF476F`
+* **Warning**: `#FFD166`
 
-Transaction history
+---
 
-Payment System
-Non-Member: Rp 2,000 per visit
+## 📟 NFC Features
 
-Active Member: FREE parking
+### Read Tag (Admin - Billing)
+1.  Navigate to the **Billing** screen.
+2.  Tap the **"Scan NFC Tag"** button.
+3.  Bring the phone close to the target NFC tag.
+4.  Payment status and details will be displayed automatically.
 
-E-Wallet: GoPay, DANA, LinkAja
+### Write Tag (Admin - Vehicle Registration)
+1.  Navigate to the **Motorcycle Registration** screen.
+2.  Input the owner's name and license plate number.
+3.  Tap the **"Write NFC Tag"** button.
+4.  Bring the phone close to a blank/writable NFC tag.
+5.  System confirms registration and saves to the database.
 
-Design System
-Blue Ocean Theme
+---
 
-Primary: #0077B6
+## 🔒 Authentication & Mock API
+* **OAuth**: Uses Google OAuth 2.0. Roles are determined server-side/logic-based automatically.
+* **Simulated Backend**: The app uses a robust mock API for:
+    * Login & Session simulation.
+    * NFC Tag validation.
+    * Vehicle registration data persistence.
+    * E-Wallet balance updates.
 
-Accent: #48CAE4
+---
 
-Success: #06D6A0
+## 🛠️ Troubleshooting
 
-Danger: #EF476F
+**NFC Not Responding?**
+* Ensure NFC is physically enabled in your device settings.
+* Verify that your hardware supports NFC (Near Field Communication).
+* The application will automatically switch to **Mock Mode** if hardware is unavailable.
 
-Warning: #FFD166
-
-NFC Features
-Read Tag (Admin - Billing)
-Open the Billing screen
-
-Tap "Scan NFC Tag"
-
-Bring the phone close to the NFC tag
-
-Payment status will be displayed automatically
-
-Write Tag (Admin - Motorcycle Registration)
-Open the Motorcycle Registration screen
-
-Fill in owner and plate number
-
-Tap "Write NFC Tag"
-
-Bring the phone close to a blank NFC tag
-
-Complete motorcycle information
-
-Register in the system
-
-Authentication
-Login uses Google OAuth. The role (admin/user) is determined automatically by the system.
-
-Mock API
-The application uses a mock API to simulate backend operations:
-
-Login simulation
-
-Tag checking
-
-Motorcycle registration
-
-E-Wallet top up
-
-Profile management
-
-Troubleshooting
-NFC Not Working?
-
-Make sure NFC is enabled on your device
-
-Check if your device supports NFC
-
-The app will use mock mode if NFC is unavailable
-
-Build Errors?
-
-Bash
+**Build or Dependency Errors?**
+```bash
 npm install --legacy-peer-deps
 npx expo start --clear
-License
+```
+
+---
+
+## 📜 License
 © 2025 Valdo Muhammad. All Rights Reserved.
 
-Contact
-Instagram: @valdomuhammadd
+## 📞 Contact
+* **Instagram**: [@valdomuhammadd](https://instagram.com/valdomuhammadd)
+* **University**: Indo Global Mandiri University, Palembang
+* **Major**: Computer Systems
 
-University: Indo Global Mandiri University, Palembang
-
-Major: Computer Systems
-
-Engineered with precision by Valdo Muhammad
+---
+**Engineered with precision by Valdo Muhammad**
+```
