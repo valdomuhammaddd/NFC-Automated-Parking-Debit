@@ -1,95 +1,94 @@
-﻿# MARKIR E-Parking Management
 
-Aplikasi E-Parking Management dengan teknologi NFC untuk pengelolaan retribusi parkir.
+# MARKIR E-Parking Management
 
-##  Developer
+MARKIR is an E-Parking Management application utilizing NFC technology for efficient parking fee management.
+
+## Developer
 
 **Valdo Muhammad**  
-Mahasiswa Sistem Komputer  
-Universitas Indo Global Mandiri Palembang  
+Computer Systems Student  
+Indo Global Mandiri University, Palembang  
 Instagram: [@valdomuhammadd](https://instagram.com/valdomuhammadd)
 
-##  Features
+## Features
 
--  **NFC Technology**: Read & Write NFC tags
--  **E-Wallet System**: GoPay, DANA, LinkAja integration
+-  **NFC Technology**: Read & write NFC tags
+-  **E-Wallet System**: Integration with GoPay, DANA, LinkAja
 -  **Membership System**: Free parking for members
--  **Admin Dashboard**: Statistics and management
+-  **Admin Dashboard**: Statistics and management tools
 -  **Transaction History**: Complete audit trail
 -  **Google OAuth**: Secure authentication
 -  **Blue Ocean Theme**: Modern UI/UX (#0077B6)
 
-##  Tech Stack
+## Tech Stack
 
 - **Framework**: React Native + TypeScript
 - **State Management**: Redux Toolkit
 - **Architecture**: MVVM Pattern
 - **Navigation**: React Navigation 7.x
 - **NFC**: react-native-nfc-manager
-- **Auth**: @react-native-google-signin/google-signin
+- **Authentication**: @react-native-google-signin/google-signin
 - **Styling**: React Native StyleSheet
 
-##  Project Structure
+## Project Structure
 
-\\\
+```
 markir-app/
- src/
+  src/
     data/
-       api/           # Mock API handlers
-       types/         # TypeScript interfaces
+      api/           # Mock API handlers
+      types/         # TypeScript interfaces
     redux/
-       slices/        # Redux slices (auth, user, transaction)
-       store.ts       # Redux store configuration
-       hooks.ts       # Typed Redux hooks
-    navigation/        # Navigation stacks
+      slices/        # Redux slices (auth, user, transaction)
+      store.ts       # Redux store configuration
+      hooks.ts       # Typed Redux hooks
+    navigation/      # Navigation stacks
     screens/
-       admin/         # Admin screens
-       user/          # User screens
-       auth/          # Authentication screens
-    components/        # Reusable components
-    theme/             # Colors, spacing, typography
-    utils/             # NFC service and utilities
- App.tsx                # Main entry point
- package.json
-\\\
+      admin/         # Admin screens
+      user/          # User screens
+      auth/          # Authentication screens
+    components/      # Reusable components
+    theme/           # Colors, spacing, typography
+    utils/           # NFC service and utilities
+  App.tsx           # Main entry point
+  package.json
+```
 
-##  Installation
+## Installation
 
 1. **Install Dependencies**
-\\\ash
-npm install
-\\\
-
+   ```bash
+   npm install
+   ```
 2. **Start Development Server**
-\\\ash
-npx expo start
-\\\
-
+   ```bash
+   npx expo start
+   ```
 3. **Run on Device**
-- Scan QR code with Expo Go app
-- Or press 'a' for Android / 'i' for iOS
+   - Scan the QR code with the Expo Go app
+   - Or press 'a' for Android / 'i' for iOS in the terminal
 
-##  User Roles
+## User Roles
 
 ### Admin
 - Dashboard with statistics
-- NFC Tag Reading (Penagihan)
-- NFC Tag Writing (Registrasi Motor)
+- NFC Tag Reading (Billing)
+- NFC Tag Writing (Motorcycle Registration)
 - Transaction management
 
 ### User
 - Wallet management
 - Top up balance
-- View profile & motorcycles
+- View profile & registered motorcycles
 - Transaction history
 
-##  Payment System
+## Payment System
 
 - **Non-Member**: Rp 2,000 per visit
 - **Active Member**: FREE parking
 - **E-Wallet**: GoPay, DANA, LinkAja
 
-##  Design System
+## Design System
 
 **Blue Ocean Theme**
 - Primary: #0077B6
@@ -98,58 +97,58 @@ npx expo start
 - Danger: #EF476F
 - Warning: #FFD166
 
-##  NFC Features
+## NFC Features
 
-### Read Tag (Admin - Penagihan)
-1. Open Penagihan screen
-2. Tap "Scan Tag NFC"
-3. Bring phone close to NFC tag
-4. View payment status automatically
+### Read Tag (Admin - Billing)
+1. Open the Billing screen
+2. Tap "Scan NFC Tag"
+3. Bring the phone close to the NFC tag
+4. Payment status will be displayed automatically
 
-### Write Tag (Admin - Registrasi)
-1. Open Registrasi Motor screen
-2. Fill owner and plate number
-3. Tap "Tulis Tag NFC"
-4. Bring phone close to blank NFC tag
+### Write Tag (Admin - Motorcycle Registration)
+1. Open the Motorcycle Registration screen
+2. Fill in owner and plate number
+3. Tap "Write NFC Tag"
+4. Bring the phone close to a blank NFC tag
 5. Complete motorcycle information
-6. Register in system
+6. Register in the system
 
-##  Authentication
+## Authentication
 
-Login menggunakan Google OAuth. Role (admin/user) ditentukan otomatis oleh sistem.
+Login uses Google OAuth. The role (admin/user) is determined automatically by the system.
 
-##  Mock API
+## Mock API
 
-Aplikasi menggunakan mock API untuk simulasi backend:
+The application uses a mock API to simulate backend operations:
 - Login simulation
 - Tag checking
-- Motor registration
+- Motorcycle registration
 - E-Wallet top up
 - Profile management
 
-##  Troubleshooting
+## Troubleshooting
 
 **NFC Not Working?**
-- Ensure NFC is enabled on device
-- Check device supports NFC
-- App will use mock mode if NFC unavailable
+- Make sure NFC is enabled on your device
+- Check if your device supports NFC
+- The app will use mock mode if NFC is unavailable
 
 **Build Errors?**
-\\\ash
-npm install --legacy-peer-deps
-npx expo start --clear
-\\\
+   ```bash
+   npm install --legacy-peer-deps
+   npx expo start --clear
+   ```
 
-##  License
+## License
 
- 2025 Valdo Muhammad. All Rights Reserved.
+© 2025 Valdo Muhammad. All Rights Reserved.
 
-##  Contact
+## Contact
 
 - Instagram: [@valdomuhammadd](https://instagram.com/valdomuhammadd)
-- University: Universitas Indo Global Mandiri Palembang
-- Major: Sistem Komputer
+- University: Indo Global Mandiri University, Palembang
+- Major: Computer Systems
 
 ---
 
-**Made with  by Valdo Muhammad**
+**Made with ❤️ by Valdo Muhammad**
