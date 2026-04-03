@@ -3,166 +3,165 @@
 ![Framework](https://img.shields.io/badge/framework-React%20Native-blue?style=flat-square&logo=react)
 ![Language](https://img.shields.io/badge/language-TypeScript-blue?style=flat-square&logo=typescript)
 ![Build](https://img.shields.io/badge/build-passing-brightgreen?style=flat-square)
+![Architecture](https://img.shields.io/badge/architecture-MVVM-orange?style=flat-square)
 
-# MARKIR E-Parking Management
+# 📟 MARKIR: Enterprise E-Parking Management Ecosystem
 
-**MARKIR** is a high-performance E-Parking Management ecosystem. It leverages **NFC (Near Field Communication)** hardware integration to provide secure, contactless, and real-time parking fee settlement.
+**MARKIR** is a high-integrity, industrial-scale E-Parking Management solution. Engineered for low-latency hardware interaction, it bridges native **NFC (Near Field Communication)** capabilities with a secure mobile fintech ecosystem to provide contactless, real-time, and fraud-resistant parking settlement.
 
----
-
-## 👨‍💻 Developer
-**Valdo Muhammad** *Computer Systems Student* Indo Global Mandiri University, Palembang  
-Instagram: [@valdomuhammadd](https://instagram.com/valdomuhammadd)
+Built with a **"Hardware-Software Co-Design"** philosophy, MARKIR ensures reliable performance in mission-critical environments.
 
 ---
 
-## ✨ Features
-* **NFC Technology**: Seamless Read & Write capabilities for NFC tags.
-* **E-Wallet System**: Integrated simulation with GoPay, DANA, and LinkAja.
-* **Membership System**: Automated logic for free parking for registered members.
-* **Admin Dashboard**: Real-time statistics and management tools.
-* **Transaction History**: Complete and secure audit trail for all activities.
-* **Google OAuth**: Secure authentication via Google Sign-In.
-* **Blue Ocean Theme**: Modern and sleek UI/UX design (#0077B6).
+## 👨‍💻 Engineering Identity
+**Valdo Muhammad**
+* **Role:** Technology Architect & Systems Engineer
+* **Organization:** Independent Systems Consultant
+* **Education:** Computer Systems, Indo Global Mandiri University
+* **Specialization:** Industrial IoT, Backend Scalability, & Embedded Systems
 
 ---
 
-## 🛠️ Tech Stack
-* **Framework**: React Native + TypeScript
-* **State Management**: Redux Toolkit
-* **Architecture**: MVVM (Model-View-ViewModel) Pattern
-* **Navigation**: React Navigation 7.x
-* **NFC**: `react-native-nfc-manager`
-* **Authentication**: `@react-native-google-signin/google-signin`
-* **Styling**: React Native StyleSheet
+## 🏗️ Architectural Blueprint
+
+The system is built on **Clean Architecture** principles to ensure that business logic remains decoupled from hardware and UI frameworks.
+
+### 📐 MVVM Pattern Implementation
+1. **Model (Data Layer):** Encapsulates NDEF protocol logic, TypeScript interfaces, and API abstraction.
+2. **View (Presentation Layer):** Stateless, reusable components following **Atomic Design** principles.
+3. **ViewModel (Business Logic):** Powered by **Redux Toolkit (RTK)** to manage global state synchronization and hardware event triggers.
 
 ---
 
-## 📂 Project Structure
+## ⚙️ System Logic & Workflows
+
+### 🔄 Business Logic: Admin Billing via NFC
+The following flowchart illustrates the automated decision-making process when an NFC tag is detected.
+
+```mermaid
+graph TD
+    A([Start Billing Process]) --> B[Initialize NDEF Hardware Listener]
+    B --> C{NFC Tag Detected?}
+    C -- No / Timeout --> D[Fallback to Mock Mode / Error Notification]
+    C -- Yes --> E[Read NDEF Payload: Card ID]
+    E --> F[API/State: Validate Vehicle ID]
+    F --> G{Is Active Member?}
+    G -- Yes --> H[Apply Membership Logic: Rate = 0]
+    G -- No --> I[Apply Flat Rate: Rp 2,000]
+    H --> J[Commit Transaction to Ledger]
+    I --> J
+    J --> K[Update Redux State & Dispatch Toast]
+    K --> L[Release Hardware Resource]
+    L --> M([End Transaction])
+````
+
+### 📡 Hardware-to-State Sequence
+
+This diagram shows the asynchronous interaction between the physical NFC chip and the application's state manager.
+
+```mermaid
+sequenceDiagram
+    participant Hardware as NFC Chip (ISO 14443)
+    participant App as MARKIR Mobile App
+    participant RTK as Redux Toolkit (ViewModel)
+    participant API as Mock/Cloud Backend
+
+    App->>Hardware: Enable NDEF Discovery Mode
+    Note right of Hardware: User Taps NFC Tag
+    Hardware-->>App: NDEF Message Payload
+    App->>RTK: Dispatch processTransaction(payload)
+    RTK->>API: POST /v1/parking/settle
+    API-->>RTK: 200 OK (Transaction Confirmed)
+    RTK-->>App: Reactive UI Update (Success View)
+    App->>Hardware: Disable Discovery
+```
+
+-----
+
+## ✨ Enterprise Features
+
+  * 🛡️ **Native NFC Integration**: Deep integration using `react-native-nfc-manager` supporting NDEF Read/Write for industrial tags.
+  * 💳 **Fintech Simulation Layer**: Decoupled service layer for integrated e-wallet settlement (GoPay, DANA, LinkAja).
+  * 🔐 **OAuth 2.0 Security**: Robust identity management via Google OAuth 2.0 with role-based access control (RBAC).
+  * 📊 **Admin Intelligence**: Real-time KPI dashboard monitoring revenue, occupancy, and member conversion.
+  * ⚙️ **Hardware-Agnostic Fallback**: Intelligent detection that switches to **Mock Mode** when hardware is unavailable, ensuring zero downtime for logic testing.
+  * 📝 **Audit Trail Compliance**: Full transaction logging for security auditing and financial reconciliation.
+
+-----
+
+## 🛠️ Technical Specifications
+
+| Component | Technology | Standard |
+| :--- | :--- | :--- |
+| **Framework** | React Native (Expo) | Cross-Platform Stability |
+| **Language** | TypeScript (Strict) | Type-Safety & Code Integrity |
+| **State Management**| Redux Toolkit (RTK) | Flux Architecture |
+| **Protocol** | NFC NDEF | ISO/IEC 14443-4 |
+| **Architecture** | MVVM | Clean Separation of Concerns |
+
+-----
+
+## 📂 Industrial Boilerplate Structure
+
 ```text
 markir-app/
 ├── src/
-│   ├── data/
-│   │   ├── api/           # Mock API handlers & simulation logic
-│   │   └── types/         # TypeScript interfaces & types
-│   ├── redux/
-│   │   ├── slices/        # Redux slices (auth, user, transaction)
-│   │   ├── store.ts       # Central Redux store configuration
-│   │   └── hooks.ts       # Typed Redux hooks for TypeScript
-│   ├── navigation/        # Stack & Tab navigation configurations
-│   ├── screens/
-│   │   ├── admin/         # Admin-specific modules
-│   │   ├── user/          # User-facing modules
-│   │   └── auth/          # Authentication flows
-│   ├── components/        # Reusable UI components
-│   ├── theme/             # Global colors, spacing, and typography
-│   └── utils/             # NFC services and helper utilities
-├── App.tsx                # Main entry point
-└── package.json           # Project dependencies & scripts
+│   ├── components/      # Atomic UI Components (Reusable)
+│   ├── data/            # MODEL: API Services, Hardware Logic, & Types
+│   │   ├── api/         # High-fidelity Mock API Handlers
+│   │   └── services/    # NFC Hardware Abstraction Layer
+│   ├── redux/           # VIEWMODEL: Slices, Store, & Typed Hooks
+│   ├── screens/         # Feature-based Screen Modules (Admin/User)
+│   ├── theme/           # Blue Ocean Design System (UX Tokens)
+│   └── utils/           # Hardware Helpers & Validation Logic
+├── App.tsx              # Application Root & Provider Config
+├── eslintrc.js          # Code Quality & Linting Rules
+└── package.json         # Dependency Manifest
 ```
 
----
+-----
 
-## 🚀 Installation
+## 🚀 Deployment & Installation
 
-### 1. Install Dependencies
+### 1\. Environment Requirements
+
+  * Node.js (LTS)
+  * NPM / Yarn
+  * NFC-enabled Android device for hardware testing.
+
+### 2\. Dependency Management
+
 ```bash
 npm install
 ```
 
-### 2. Start Development Server
+### 3\. Execution (Industrial Pipeline)
+
 ```bash
-npx expo start
-```
-
-### 3. Run on Device
-* Scan the QR code with the **Expo Go** app.
-* Or press **'a'** for Android / **'i'** for iOS in the terminal.
-
----
-
-## 👤 User Roles
-
-### Admin
-* Full Dashboard access with real-time statistics.
-* **NFC Tag Reading**: Used for billing and payment verification.
-* **NFC Tag Writing**: Used for new motorcycle registration.
-* Complete transaction management.
-
-### User
-* Personal wallet management.
-* Simulated Top-up balance.
-* View profile & registered vehicles.
-* Personal transaction history.
-
----
-
-## 💳 Payment System
-* **Non-Member**: Rp 2,000 per visit.
-* **Active Member**: **FREE** parking.
-* **Supported E-Wallets**: GoPay, DANA, LinkAja.
-
----
-
-## 🎨 Design System (Blue Ocean)
-* **Primary**: `#0077B6`
-* **Accent**: `#48CAE4`
-* **Success**: `#06D6A0`
-* **Danger**: `#EF476F`
-* **Warning**: `#FFD166`
-
----
-
-## 📟 NFC Features
-
-### Read Tag (Admin - Billing)
-1.  Navigate to the **Billing** screen.
-2.  Tap the **"Scan NFC Tag"** button.
-3.  Bring the phone close to the target NFC tag.
-4.  Payment status and details will be displayed automatically.
-
-### Write Tag (Admin - Vehicle Registration)
-1.  Navigate to the **Motorcycle Registration** screen.
-2.  Input the owner's name and license plate number.
-3.  Tap the **"Write NFC Tag"** button.
-4.  Bring the phone close to a blank/writable NFC tag.
-5.  System confirms registration and saves to the database.
-
----
-
-## 🔒 Authentication & Mock API
-* **OAuth**: Uses Google OAuth 2.0. Roles are determined server-side/logic-based automatically.
-* **Simulated Backend**: The app uses a robust mock API for:
-    * Login & Session simulation.
-    * NFC Tag validation.
-    * Vehicle registration data persistence.
-    * E-Wallet balance updates.
-
----
-
-## 🛠️ Troubleshooting
-
-**NFC Not Responding?**
-* Ensure NFC is physically enabled in your device settings.
-* Verify that your hardware supports NFC (Near Field Communication).
-* The application will automatically switch to **Mock Mode** if hardware is unavailable.
-
-**Build or Dependency Errors?**
-```bash
-npm install --legacy-peer-deps
+# Start Metro Bundler with cache clear
 npx expo start --clear
+
+# Deploy to Android
+# Use 'a' in terminal or scan QR code via Expo Go.
 ```
 
----
+-----
 
-## 📜 License
-© 2025 Valdo Muhammad. All Rights Reserved.
+## 🗺️ Future Roadmap (Scalability)
 
-## 📞 Contact
-* **Instagram**: [@valdomuhammadd](https://instagram.com/valdomuhammadd)
-* **University**: Indo Global Mandiri University, Palembang
-* **Major**: Computer Systems
+  - [ ] **Phase 1**: Integration with AWS Lambda & DynamoDB for production backend.
+  - [ ] **Phase 2**: Implementation of Offline-First Synchronization via WatermelonDB.
+  - [ ] **Phase 3**: Biometric Admin Verification (FaceID/Fingerprint).
+  - [ ] **Phase 4**: Automated CI/CD pipelines via GitHub Actions.
 
----
-**Engineered with precision by Valdo Muhammad**
-```
+-----
+
+## 📜 License & Copyright
+
+© 2025 **Valdo Muhammad**. All Rights Reserved.  
+*Engineered with architectural precision and systems-thinking.*
+
+-----
+
+**Contact:** [Instagram](https://instagram.com/valdomuhammadd) | [LinkedIn](https://www.google.com/search?q=https://linkedin.com/in/valdo-muhammad)
+
