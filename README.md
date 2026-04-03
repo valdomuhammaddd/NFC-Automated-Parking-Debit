@@ -163,5 +163,5 @@ npx expo start --clear
 
 -----
 
-**Contact:** [Instagram](https://instagram.com/valdomuhammadd) | [LinkedIn](https://www.google.com/search?q=https://linkedin.com/in/valdo-muhammad)
+**Contact:** [Instagram](https://instagram.com/valdomuhammadd) | [LinkedIn](https://www.google.com/search?q=https://linkedin.com/in/mvaldo-it/)
 
