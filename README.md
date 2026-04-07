@@ -6,19 +6,19 @@
 ![Cache](https://img.shields.io/badge/cache-Redis-red?style=flat-square&logo=redis)
 ![Architecture](https://img.shields.io/badge/architecture-MVVM%20%2B%20Clean-orange?style=flat-square)
 
-# 📟 MARKIR: Enterprise E-Parking Ecosystem (High-Availability)
+# 📟 MARKIR: Enterprise E-Parking Ecosystem
 
-**MARKIR** is a production-grade E-Parking management solution engineered to solve revenue leakage and operational bottlenecks in industrial parking environments. By leveraging **Hardware-Software Co-Design**, this system bridges native **NFC (Near Field Communication)** protocols with a scalable backend architecture.
+**MARKIR** is a high-integrity, industrial-scale E-Parking management solution. Engineered for low-latency hardware interaction, it bridges native **NFC (Near Field Communication)** capabilities with a secure, scalable backend architecture to provide contactless, real-time, and fraud-resistant parking settlement.
 
-> **Key Architectural Goal:** To provide a fraud-resistant, low-latency settlement layer that ensures 100% transactional integrity.
+Built with a **"Hardware-Software Co-Design"** philosophy, MARKIR ensures reliable performance in mission-critical environments where data integrity and system uptime are paramount.
 
 ---
 
-## 🏗️ High-Level System Architecture
+## 🏗️ System Architecture (Deep-Dive)
 
-The following diagram illustrates the enterprise-grade infrastructure designed for high availability and security, utilizing an API Gateway and dedicated micro-services.
+The following diagram illustrates the enterprise-grade infrastructure, showcasing the separation of concerns from physical hardware to data persistence.
 
-![System Architecture]
+```mermaid
 graph TD
     %% Global Styles
     classDef hardware fill:#f8fafc,stroke:#0077B6,stroke-width:2px,color:#0077B6,stroke-dasharray: 5 5;
@@ -78,24 +78,22 @@ graph TD
     class GATEWAY,AUTH_SVC,NFC_VALIDATOR,TRANS_MGR backend;
     class POSTGRES_DB database;
     class REDIS_CACHE cache;
-### 🛡️ Architectural Highlights:
-* **Ingress & Rate Limiting:** Implemented via **Redis** to prevent API abuse and ensure system stability during peak hours.
-* **Stateful Integrity:** Utilizing **PostgreSQL** for ACID-compliant transaction logging, ensuring no data loss during financial settlement.
-* **Security Layer:** JWT-based **RBAC (Role-Based Access Control)** orchestrating permissions between Admin, Operators, and Users.
+````
 
----
+-----
 
-## 📡 Hardware-to-Cloud Integration
+## ⚙️ Core Logic & Workflows
 
-### NFC Logic Workflow
-Automated decision-making process at the edge, ensuring zero-latency response for field operators.
+### 🔄 Admin Billing via NFC
+
+Automated decision-making process when an NFC tag is detected, ensuring ACID-compliant transaction handling.
 
 ```mermaid
 graph TD
     A([Start Billing]) --> B[Initialize NDEF Hardware]
     B --> C{NFC Tag Detected?}
     C -- No --> D[Fallback to Mock Mode]
-    C -- Yes --> E[Extract Encrypted Card ID]
+    C -- Yes --> E[Extract Card ID]
     E --> F[Auth Service: Validate Identity]
     F --> G{Active Member?}
     G -- Yes --> H[Apply Membership Logic: Rate=0]
@@ -103,33 +101,34 @@ graph TD
     H --> J[Commit Transaction to Ledger]
     I --> J
     J --> K[Update Redux State & Dispatch UI]
-    K --> L[Release Hardware]
+    K --> L[Release Hardware Resource]
     L --> M([End Transaction])
-````
+```
 
 -----
 
-## ✨ Enterprise-Grade Features
+## ✨ Enterprise Features
 
-  * 🛡️ **Native NFC Integration**: Direct communication via `react-native-nfc-manager` supporting NDEF Read/Write protocols for ISO 14443-4 tags.
-  * ⚡ **Redis-Powered Performance**: Cached rate-limiting and session management to handle high-concurrency requests.
-  * 💳 **Fintech Ledger System**: Decoupled settlement layer designed for seamless integration with e-wallet providers (GoPay, DANA, LinkAja).
-  * 🔐 **Industrial Security**: Robust Identity Management via Google OAuth 2.0 and custom RBAC middleware.
-  * 📊 **Admin Intelligence**: Real-time KPI dashboards for monitoring occupancy, revenue flow, and audit trails.
+  * 🛡️ **Native NFC Integration**: Deep integration using `react-native-nfc-manager` supporting NDEF protocols for industrial tags.
+  * ⚡ **High-Performance Caching**: Redis-integrated API Gateway for stateful **Rate Limiting** and session management.
+  * 💳 **Fintech Ledger System**: Secure transactional flow designed for financial reconciliation and audit trail compliance.
+  * 🔐 **OAuth 2.0 & RBAC**: Robust identity management with Role-Based Access Control (Admin/Operator/User).
+  * ⚙️ **Hardware-Agnostic Fallback**: Intelligent detection that switches to **Mock Mode** when hardware is unavailable, ensuring development continuity.
+  * 📊 **Scalable Persistence**: Designed for **PostgreSQL**, ensuring high data integrity for all parking logs.
 
 -----
 
-## 🛠️ Technical Stack & Standards
+## 🛠️ Technical Specifications
 
-| Component | Technology | Standard/Pattern |
+| Component | Technology | Standard |
 | :--- | :--- | :--- |
 | **Framework** | React Native (Expo) | Cross-Platform Stability |
 | **Language** | TypeScript (Strict) | Type-Safety & Code Integrity |
-| **State Management**| Redux Toolkit (RTK) | Flux / State Synchronization |
-| **Backend Logic** | Node.js / Express | Non-blocking I/O |
-| **Persistence** | PostgreSQL | ACID Compliance |
-| **Caching/Security**| Redis | In-memory Rate Limiting |
-| **Hardware** | NFC NDEF | ISO/IEC 14443-4 |
+| **State Management**| Redux Toolkit (RTK) | Flux Architecture |
+| **Backend Architecture**| Node.js / Microservices | Scalable Ingress Control |
+| **Caching Layer** | Redis | In-memory Rate Limiting |
+| **Database** | PostgreSQL | ACID Compliance |
+| **Architecture Pattern**| MVVM + Clean Architecture| Modular & Maintainable |
 
 -----
 
@@ -138,24 +137,24 @@ graph TD
 ```text
 markir-app/
 ├── src/
-│   ├── components/      # Atomic Design UI (Atomic, Molecules, Organisms)
-│   ├── data/            # MODEL: API Abstraction & Hardware Logic
-│   │   ├── services/    # NFC Hardware Abstraction Layer (HAL)
-│   │   └── repository/  # Data Access Object (DAO) Pattern
-│   ├── redux/           # VIEWMODEL: Slices & Middleware Logic
+│   ├── components/      # Atomic UI Components (Stateless & Reusable)
+│   ├── data/            # MODEL: API Abstraction, NFC Logic, & Repositories
+│   │   ├── api/         # Axios Interceptors & Service Contracts
+│   │   └── hardware/    # NFC Hardware Abstraction Layer (HAL)
+│   ├── redux/           # VIEWMODEL: Global State Slices & Typed Hooks
 │   ├── screens/         # Feature-based Screen Modules
-│   └── utils/           # Hardware Helpers & Validation Schemas
-├── App.tsx              # Root Provider & Navigation Logic
-└── package.json         # Manifest
+│   └── utils/           # Hardware Helpers & Business Logic Schemas
+├── App.tsx              # Application Root & Store Configuration
+└── package.json         # Dependency Manifest
 ```
 
 -----
 
-## 🚀 Future Roadmap (US-Scale Expansion)
+## 🚀 Future Roadmap
 
-  - [ ] **Phase 1**: Migrating to AWS Lambda & DynamoDB for serverless scalability.
-  - [ ] **Phase 2**: Implementation of **Offline-First** sync via WatermelonDB for low-connectivity environments.
-  - [ ] **Phase 3**: Automated CI/CD pipelines via GitHub Actions with 90% Unit Test coverage.
+  - [ ] **Phase 1**: Migrating to AWS Lambda & DynamoDB for serverless global scale.
+  - [ ] **Phase 2**: Implementation of **Offline-First** synchronization using WatermelonDB.
+  - [ ] **Phase 3**: Automated CI/CD pipelines via GitHub Actions with 95% test coverage.
 
 -----
 
@@ -164,10 +163,10 @@ markir-app/
 **Valdo Muhammad**
 
   * **Role:** Technology Architect & Systems Engineer
-  * **Specialization:** Industrial IoT, Distributed Systems, & Backend Scalability.
-  * **Track Record:** Optimized industrial payroll systems for **70% operational efficiency boost**.
+  * **Track Record:** Successfully optimized industrial systems for a **70% operational efficiency boost**.
+  * **Expertise:** Distributed Systems, Industrial IoT, & Backend Scalability.
 
-**Contact:** [LinkedIn](https://www.linkedin.com/in/valdomuhammad/) | [GitHub](https://www.google.com/search?q=https://github.com/mvaldo-it)
+**Contact:** [LinkedIn](https://www.linkedin.com/in/valdomuhammad/) | [GitHub](https://www.google.com/search?q=https://github.com/valdomuhammad)
 
 -----
 
