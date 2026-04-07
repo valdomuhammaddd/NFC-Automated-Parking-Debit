@@ -18,9 +18,66 @@
 
 The following diagram illustrates the enterprise-grade infrastructure designed for high availability and security, utilizing an API Gateway and dedicated micro-services.
 
-![System Architecture](./assets/mermaid-diagram-2026-04-07-181549.png) 
-*(Note: Ensure you have uploaded the Mermaid diagram file to your /assets folder)*
+![System Architecture]
+graph TD
+    %% Global Styles
+    classDef hardware fill:#f8fafc,stroke:#0077B6,stroke-width:2px,color:#0077B6,stroke-dasharray: 5 5;
+    classDef mobile fill:#ffffff,stroke:#0077B6,stroke-width:2px,color:#0077B6;
+    classDef backend fill:#0077B6,stroke:#005F8D,stroke-width:2px,color:#ffffff;
+    classDef database fill:#f1f5f9,stroke:#475569,stroke-width:2px,color:#1e293b;
+    classDef cache fill:#ef4444,stroke:#b91c1c,stroke-width:2px,color:#ffffff;
 
+    %% LAYER 1: PHYSICAL / HARDWARE
+    subgraph Layer_Physical [Physical Layer]
+        NFC_TAG[("NFC Tag / Smart Card <br/>(ISO/IEC 14443)")]
+    end
+
+    %% LAYER 2: MOBILE CLIENT
+    subgraph Layer_Mobile [Mobile Client Layer - React Native]
+        NFC_MGR[NFC Manager Module]
+        APP_LOGIC[Business Logic Controller]
+        REDUX[Redux State Manager <br/>Auth & Role State]
+        AXIOS[HTTP Client <br/>JWT Authenticated]
+    end
+
+    %% LAYER 3: BACKEND SERVICES
+    subgraph Layer_Backend [API & Microservices Layer]
+        GATEWAY[API Gateway / Ingress]
+        AUTH_SVC[Auth & RBAC Service]
+        NFC_VALIDATOR[NFC Validation Service]
+        TRANS_MGR[Transaction Manager]
+    end
+
+    %% LAYER 4: DATA PERSISTENCE & CACHING
+    subgraph Layer_Data [Infrastructure Layer]
+        REDIS_CACHE[[Redis <br/>Rate Limiting & Session]]
+        POSTGRES_DB[(PostgreSQL <br/>Transactional Data)]
+    end
+
+    %% DATA FLOW - TOP DOWN LOGIC
+    NFC_TAG -- "Raw Data Transmit" --> NFC_MGR
+    NFC_MGR --> APP_LOGIC
+    APP_LOGIC --> REDUX
+    REDUX --> AXIOS
+
+    %% API FLOW WITH RATE LIMITING
+    AXIOS -- "HTTPS Request" --> GATEWAY
+    GATEWAY <--> REDIS_CACHE
+    
+    GATEWAY --> AUTH_SVC
+    AUTH_SVC --> NFC_VALIDATOR
+    NFC_VALIDATOR --> TRANS_MGR
+    
+    %% PERSISTENCE FLOW
+    TRANS_MGR --> POSTGRES_DB
+    AUTH_SVC --> POSTGRES_DB
+
+    %% Applying Classes
+    class NFC_TAG hardware;
+    class NFC_MGR,APP_LOGIC,REDUX,AXIOS mobile;
+    class GATEWAY,AUTH_SVC,NFC_VALIDATOR,TRANS_MGR backend;
+    class POSTGRES_DB database;
+    class REDIS_CACHE cache;
 ### 🛡️ Architectural Highlights:
 * **Ingress & Rate Limiting:** Implemented via **Redis** to prevent API abuse and ensure system stability during peak hours.
 * **Stateful Integrity:** Utilizing **PostgreSQL** for ACID-compliant transaction logging, ensuring no data loss during financial settlement.
