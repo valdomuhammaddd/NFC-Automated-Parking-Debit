@@ -86,7 +86,7 @@ graph TD
 
 ### 🔄 Admin Billing via NFC
 
-Automated decision-making process when an NFC tag is detected, ensuring ACID-compliant transaction handling.
+Automated decision-making process when an NFC tag is detected, ensuring ACID-compliant transaction.
 
 ```mermaid
 graph TD
